@@ -1,11 +1,27 @@
 import React from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ShopProducts from "./pages/ShopProducts";
+import ProductDetails from "./pages/ProductDetails";
+import Shop from "./pages/Shop";
+import Brands from "./pages/Brands";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
     <React.StrictMode>
-      <div>Waiting for Content</div>
+      <Header />
+      <Router>
+        <Home path="/" />
+        <Brands path="/brands" />
+        <Shop path="/shop" />
+        <ShopProducts path="/shop-products" />
+        <ProductDetails path="/product/:id" />
+      </Router>
+      <Footer />
     </React.StrictMode>
   );
 };
