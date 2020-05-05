@@ -25,6 +25,7 @@ const Home = props => {
             text-transform: uppercase;
             margin: 0.5em 2em;
             font-size: ${theme.fontSize.xl};
+            text-shadow: 1px 1px 10px ${theme.color.darkOpacity};
           `}
         >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
