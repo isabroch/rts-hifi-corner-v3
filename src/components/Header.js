@@ -70,7 +70,7 @@ const bottomMenuItems = [
 ];
 
 const Header = props => {
-  const [theme] = React.useContext(ThemeContext);
+  const theme = React.useContext(ThemeContext);
 
   return (
     <nav

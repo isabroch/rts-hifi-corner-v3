@@ -13,57 +13,29 @@ import NotFound from "./pages/NotFound";
 import { css } from "@emotion/core";
 
 const App = () => {
-  const theme = useState({
-    fontSize: {
-      s: "0.8rem",
-      m: "1rem",
-      l: "2rem",
-      xl: "3rem"
-    },
-    fontWeight: {
-      light: 300,
-      normal: 400,
-      bold: 800
-    },
-    color: {
-      required: "#da2a2a",
-      brand: "#a39161",
-      brandDark: "#68542B",
-      dark: "#000000",
-      darkOpacity: "rgba(0, 0, 0, 0.75)",
-      light: "#ffffff",
-      neutralDark: "#444444",
-      neutral: "#acacac",
-      neutralLightOpacity: "rgba(243, 243, 243, 0.8)",
-      neutralLight: "#f3f3f3"
-    }
-  });
+  const theme = React.useContext(ThemeContext);
 
   return (
     <React.StrictMode>
       <ThemeContext.Provider value={theme}>
-        <ThemeContext.Consumer>
-          {([theme]) => (
-            <div
-              css={css`
-                font-family: "Nunito", sans-serif;
-                font-size: ${theme.fontSize.m};
-                font-weight: ${theme.fontWeight.normal};
-              `}
-            >
-              <Header />
-              <Router>
-                <Home path="/" />
-                <Brands path="/brands" />
-                <Shop path="/shop" />
-                <ShopProducts path="/shop/products" />
-                <ProductDetails path="/shop/products/:id" />
-                <NotFound default />
-              </Router>
-              <Footer />
-            </div>
-          )}
-        </ThemeContext.Consumer>
+        <div
+          css={css`
+            font-family: "Nunito", sans-serif;
+            font-size: ${theme.fontSize.m};
+            font-weight: ${theme.fontWeight.normal};
+          `}
+        >
+          <Header />
+          <Router>
+            <Home path="/" />
+            <Brands path="/brands" />
+            <Shop path="/shop" />
+            <ShopProducts path="/shop/products" />
+            <ProductDetails path="/shop/products/:id" />
+            <NotFound default />
+          </Router>
+          <Footer />
+        </div>
       </ThemeContext.Provider>
     </React.StrictMode>
   );

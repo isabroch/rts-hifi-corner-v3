@@ -6,7 +6,7 @@ import ThemeContext from "./ThemeContext";
 
 const SearchBar = () => {
   const [searchQuery, updateSearchQuery] = React.useState("");
-  const [theme] = React.useContext(ThemeContext);
+  const theme = React.useContext(ThemeContext);
 
   return (
     <form
