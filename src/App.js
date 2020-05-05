@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ShopProducts from "./pages/ShopProducts";
@@ -11,6 +10,7 @@ import Shop from "./pages/Shop";
 import Brands from "./pages/Brands";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import { css } from "@emotion/core";
 
 const App = () => {
   const theme = useState({
@@ -36,25 +36,35 @@ const App = () => {
       neutral: "#acacac",
       neutralLightOpacity: "rgba(243, 243, 243, 0.8)",
       neutralLight: "#f3f3f3"
-    },
-    bg: "transparent"
+    }
   });
 
   return (
     <React.StrictMode>
       <ThemeContext.Provider value={theme}>
-        <div>
-          <Header />
-          <Router>
-            <Home path="/" />
-            <Brands path="/brands" />
-            <Shop path="/shop" />
-            <ShopProducts path="/shop/products" />
-            <ProductDetails path="/shop/products/:id" />
-            <NotFound default />
-          </Router>
-          <Footer />
-        </div>
+        <ThemeContext.Consumer>
+          {([theme]) => (
+            <div
+              css={css`
+                font-family: "Nunito", sans-serif;
+                font-size: ${theme.fontSize.m};
+                font-weight: ${theme.fontWeight.normal};
+                color: ${theme.color.neutralDark};
+              `}
+            >
+              <Header />
+              <Router>
+                <Home path="/" />
+                <Brands path="/brands" />
+                <Shop path="/shop" />
+                <ShopProducts path="/shop/products" />
+                <ProductDetails path="/shop/products/:id" />
+                <NotFound default />
+              </Router>
+              <Footer />
+            </div>
+          )}
+        </ThemeContext.Consumer>
       </ThemeContext.Provider>
     </React.StrictMode>
   );
