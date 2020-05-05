@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { css } from "@emotion/core";
 
 const NavLink = props => (
   <Link
@@ -26,4 +27,26 @@ const NavLinks = props =>
     </li>
   ));
 
-export { NavLink, NavLinks };
+const NavBar = props => {
+  return (
+    <ul
+      css={css`
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin: 0;
+        list-style: none;
+      `}
+      // get extra styling from component css call
+      className={props.className}
+    >
+      {// if children, wrap them as list item and add to start
+      React.Children.map(props.children, child => (
+        <li>{child}</li>
+      ))}
+      <NavLinks items={props.menuItems} />
+    </ul>
+  );
+};
+
+export default NavBar;
