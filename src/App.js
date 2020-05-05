@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
 import Header from "./components/Header";
@@ -23,6 +23,13 @@ const App = () => {
             font-family: "Nunito", sans-serif;
             font-size: ${theme.fontSize.m};
             font-weight: ${theme.fontWeight.normal};
+
+            a {
+              transition: filter 0.1s ease;
+              &:hover {
+                filter: contrast(0.5) brightness(1.5);
+              }
+            }
           `}
         >
           <Header />

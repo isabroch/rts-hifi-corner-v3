@@ -11,7 +11,7 @@ const Logo = () => {
       css={css`
         max-width: 150px;
         display: block;
-        filter: drop-shadow(0px 1px 10px ${theme.color.darkOpacity});
+        filter: drop-shadow(${theme.shadow});
       `}
       src={logo}
       alt="hificorner.co.uk"
