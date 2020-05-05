@@ -16,6 +16,7 @@ const CarouselSlide = props => {
           height: 50vmin;
           min-height: 200px;
           margin-right: 1rem;
+          padding: 10vmin 0;
 
           a {
             position: relative;
@@ -75,7 +76,6 @@ const Carousel = props => {
       }}
       css={css`
         width: 50%;
-        padding: 10vmin 0;
 
         .flickity-button-icon {
           fill: ${theme.color.brand};
