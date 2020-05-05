@@ -3,6 +3,7 @@ import Logo from "../components/Logo";
 import ThemeContext from "../components/ThemeContext";
 import { css } from "@emotion/core";
 import Block from "../components/Block";
+import Carousel from "../components/Carousel";
 
 const Home = props => {
   const theme = React.useContext(ThemeContext);
@@ -31,6 +32,20 @@ const Home = props => {
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
           aliquam non ex!
         </p>
+      </Block>
+      <Block background={theme.color.light} color={theme.color.brand}>
+        <Carousel>
+          <span>Slide 1</span>
+          <span>Slide 2</span>
+          <span>Slide 3</span>
+          <span>Slide 4</span>
+          <span>Slide 5</span>
+          <span>Slide 6</span>
+          <span>Slide 7</span>
+          <span>Slide 8</span>
+          <span>Slide 9</span>
+          <span>Slide 10</span>
+        </Carousel>
       </Block>
     </main>
   );
