@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-function NavLink(props) {
+const NavLink = props => {
   return (
     <Link
       {...props}
@@ -14,22 +14,6 @@ function NavLink(props) {
       }}
     />
   );
-}
+};
 
-function NavBar(props) {
-  return (
-    <ul>
-      {props.menuItems.map(menuItem => (
-        <li key={menuItem.title}>
-          {menuItem.url ? (
-            <NavLink to={menuItem.url}>{menuItem.title}</NavLink>
-          ) : (
-            <span>{menuItem.title}</span>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default NavBar;
+export default NavLink;

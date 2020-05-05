@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./NavBar";
+import NavLink from "./NavLink";
 import { css } from "@emotion/core";
 
 const menuItems = [
@@ -12,7 +12,7 @@ const menuItems = [
   { title: "Contact Us", url: null }
 ];
 
-const headerStyles = css`
+const linkStyles = css`
   a {
     color: orange;
   }
@@ -20,15 +20,40 @@ const headerStyles = css`
   a.active {
     color: green;
   }
+
+  a.disabled {
+    color: gray;
+  }
 `;
 
-function Header(props) {
+const BottomNavbar = () => (
+  <ul>
+    {menuItems.map(menuItem => (
+      <li key={menuItem.title}>
+        {menuItem.url ? (
+          <NavLink to={menuItem.url}>{menuItem.title}</NavLink>
+        ) : (
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          <a className="disabled">{menuItem.title}</a>
+        )}
+      </li>
+    ))}
+  </ul>
+);
+
+const TopNavbar = () => (
+  <ul>
+    <li>Empty</li>
+  </ul>
+);
+
+const Header = props => {
   return (
-    <nav css={headerStyles}>
-      Header
-      <Navbar menuItems={menuItems} />
+    <nav css={linkStyles}>
+      <TopNavbar />
+      <BottomNavbar />
     </nav>
   );
-}
+};
 
 export default Header;
