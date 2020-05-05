@@ -47,6 +47,8 @@ const Home = props => {
           <span>Slide 10</span>
         </Carousel>
       </Block>
+      <Block>social media links</Block>
+      <Block background={theme.color.neutralDark}>history / news / shop</Block>
     </main>
   );
 };
