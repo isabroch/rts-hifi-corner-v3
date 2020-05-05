@@ -79,6 +79,7 @@ const Carousel = props => {
       }}
       css={css`
         width: 100%;
+        max-width: 1200px;
 
         .flickity-button-icon {
           fill: ${theme.color.brand};
