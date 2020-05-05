@@ -70,61 +70,59 @@ const bottomMenuItems = [
 ];
 
 const Header = props => {
+  const [theme] = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {([theme]) => (
-        <nav
-          css={css`
-            a {
-              color: ${theme.color.neutralLight};
-              font: inherit;
-              cursor: pointer;
-              text-decoration: none;
-              background: transparent;
-              border: none;
-              padding: 0.25em 0.8em;
-              text-transform: uppercase;
-              text-align: center;
-              display: inline-block;
-              transition: 0.2s filter ease;
-              &.active {
-                color: ${theme.color.brand};
-                font-weight: ${theme.fontWeight.bold};
-              }
-              &.disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-                &:hover {
-                  filter: brightness(1);
-                }
-              }
-              &:hover {
-                filter: brightness(0.8);
-              }
+    <nav
+      css={css`
+        a {
+          color: ${theme.color.neutralLight};
+          font: inherit;
+          cursor: pointer;
+          text-decoration: none;
+          background: transparent;
+          border: none;
+          padding: 0.25em 0.8em;
+          text-transform: uppercase;
+          text-align: center;
+          display: inline-block;
+          transition: 0.2s filter ease;
+          &.active {
+            color: ${theme.color.brand};
+            font-weight: ${theme.fontWeight.bold};
+          }
+          &.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            &:hover {
+              filter: brightness(1);
             }
-          `}
-        >
-          <NavBar
-            css={css`
-              justify-content: flex-end;
-              border-bottom: 1px solid ${theme.color.neutralDark};
-              align-items: baseline;
-              background: ${theme.color.darkOpacity};
-            `}
-            menuItems={topMenuItems}
-          >
-            <SearchBar />
-          </NavBar>
-          <NavBar
-            css={css`
-              justify-content: center;
-              background: ${theme.color.dark};
-            `}
-            menuItems={bottomMenuItems}
-          />
-        </nav>
-      )}
-    </ThemeContext.Consumer>
+          }
+          &:hover {
+            filter: brightness(0.8);
+          }
+        }
+      `}
+    >
+      <NavBar
+        css={css`
+          justify-content: flex-end;
+          border-bottom: 1px solid ${theme.color.neutralDark};
+          align-items: baseline;
+          background: ${theme.color.darkOpacity};
+        `}
+        menuItems={topMenuItems}
+      >
+        <SearchBar />
+      </NavBar>
+      <NavBar
+        css={css`
+          justify-content: center;
+          background: ${theme.color.dark};
+        `}
+        menuItems={bottomMenuItems}
+      />
+    </nav>
   );
 };
 
