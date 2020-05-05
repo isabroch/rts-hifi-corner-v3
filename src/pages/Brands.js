@@ -1,7 +1,7 @@
 import React from "react";
 
-function Brands(props) {
+const Brands = props => {
   return <div>Brands</div>;
-}
+};
 
 export default Brands;

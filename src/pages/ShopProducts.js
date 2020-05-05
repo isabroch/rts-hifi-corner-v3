@@ -1,7 +1,7 @@
 import React from "react";
 
-function ShopProducts(props) {
+const ShopProducts = props => {
   return <div>ShopProducts</div>;
-}
+};
 
 export default ShopProducts;
