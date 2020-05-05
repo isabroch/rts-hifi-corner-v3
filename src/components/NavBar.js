@@ -15,18 +15,6 @@ const NavLink = props => (
   />
 );
 
-const NavLinks = props =>
-  props.items.map(item => (
-    <li key={item.title}>
-      {item.url ? (
-        <NavLink to={item.url}>{item.child || item.title}</NavLink>
-      ) : (
-        // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <a className="disabled">{item.child || item.title}</a>
-      )}
-    </li>
-  ));
-
 const NavBar = props => {
   return (
     <ul
@@ -40,11 +28,21 @@ const NavBar = props => {
       // get extra styling from component css call
       className={props.className}
     >
-      {// if children, wrap them as list item and add to start
+      {// if children, wrap them as list item and add before any menu links
       React.Children.map(props.children, child => (
         <li>{child}</li>
       ))}
-      <NavLinks items={props.menuItems} />
+      {// render menu links
+      props.menuItems.map(item => (
+        <li key={item.title}>
+          {item.url ? (
+            <NavLink to={item.url}>{item.child || item.title}</NavLink>
+          ) : (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <a className="disabled">{item.child || item.title}</a>
+          )}
+        </li>
+      ))}
     </ul>
   );
 };
