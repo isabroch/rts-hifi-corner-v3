@@ -13,7 +13,7 @@ const SearchBar = () => {
       onSubmit={e => {
         e.preventDefault();
         alert(
-          `Sorry, search function isn't complete yet! \n Why are you looking for ${searchQuery} anyways?`
+          `Sorry, search function isn't complete yet!\nWhy are you looking for ${searchQuery} anyways?`
         );
       }}
     >
