@@ -73,56 +73,58 @@ const Header = props => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <nav
-      css={css`
-        a {
-          color: ${theme.color.neutralLight};
-          font: inherit;
-          cursor: pointer;
-          text-decoration: none;
-          background: transparent;
-          border: none;
-          padding: 0.25em 0.8em;
-          text-transform: uppercase;
-          text-align: center;
-          display: inline-block;
-          transition: 0.2s filter ease;
-          &.active {
-            color: ${theme.color.brand};
-            font-weight: ${theme.fontWeight.bold};
-          }
-          &.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+    <header>
+      <nav
+        css={css`
+          a {
+            color: ${theme.color.neutralLight};
+            font: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+            border: none;
+            padding: 0.25em 0.8em;
+            text-transform: uppercase;
+            text-align: center;
+            display: inline-block;
+            transition: 0.2s filter ease;
+            &.active {
+              color: ${theme.color.brand};
+              font-weight: ${theme.fontWeight.bold};
+            }
+            &.disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+              &:hover {
+                filter: brightness(1);
+              }
+            }
             &:hover {
-              filter: brightness(1);
+              filter: brightness(0.8);
             }
           }
-          &:hover {
-            filter: brightness(0.8);
-          }
-        }
-      `}
-    >
-      <NavBar
-        css={css`
-          justify-content: flex-end;
-          border-bottom: 1px solid ${theme.color.neutralDark};
-          align-items: baseline;
-          background: ${theme.color.darkOpacity};
         `}
-        menuItems={topMenuItems}
       >
-        <SearchBar />
-      </NavBar>
-      <NavBar
-        css={css`
-          justify-content: center;
-          background: ${theme.color.dark};
-        `}
-        menuItems={bottomMenuItems}
-      />
-    </nav>
+        <NavBar
+          css={css`
+            justify-content: flex-end;
+            border-bottom: 1px solid ${theme.color.neutralDark};
+            align-items: baseline;
+            background: ${theme.color.darkOpacity};
+          `}
+          menuItems={topMenuItems}
+        >
+          <SearchBar />
+        </NavBar>
+        <NavBar
+          css={css`
+            justify-content: center;
+            background: ${theme.color.dark};
+          `}
+          menuItems={bottomMenuItems}
+        />
+      </nav>
+    </header>
   );
 };
 
