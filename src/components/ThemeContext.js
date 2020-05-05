@@ -23,7 +23,9 @@ const ThemeContext = createContext({
     neutral: "#acacac",
     neutralLightOpacity: "rgba(243, 243, 243, 0.8)",
     neutralLight: "#f3f3f3"
-  }
+  },
+  textColor: "#ffffff",
+  textSize: "1rem"
 });
 
 export default ThemeContext;
