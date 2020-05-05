@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./NavBar";
+import { css } from "@emotion/core";
 
 const menuItems = [
   { title: "Home", url: "/" },
@@ -11,12 +12,22 @@ const menuItems = [
   { title: "Contact Us", url: null }
 ];
 
+const headerStyles = css`
+  a {
+    color: orange;
+  }
+
+  a.active {
+    color: green;
+  }
+`;
+
 function Header(props) {
   return (
-    <div>
+    <nav css={headerStyles}>
       Header
       <Navbar menuItems={menuItems} />
-    </div>
+    </nav>
   );
 }
 
