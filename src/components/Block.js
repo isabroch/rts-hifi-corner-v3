@@ -11,7 +11,7 @@ const Block = props => {
       background-color: ${theme.color.dark};
     `;
     // check whether it should be backgroundImage or backgroundColor
-    if (value.includes("http")) {
+    if (value && value.includes("http")) {
       background = css`
         background-image: url(${props.background});
       `;
