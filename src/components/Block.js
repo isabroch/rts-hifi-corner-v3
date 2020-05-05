@@ -29,6 +29,15 @@ const Block = props => {
       css={css`
         display: flex;
         ${
+          props.noWrap
+            ? css`
+                flex-wrap: nowrap;
+              `
+            : css`
+                flex-wrap: wrap;
+              `
+        }
+        ${
           props.centered
             ? css`
                 align-items: center;
