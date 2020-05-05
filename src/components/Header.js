@@ -1,16 +1,14 @@
 import React from "react";
-import NavLink from "./NavLink";
+import { NavLink, NavLinks } from "./NavLink";
 import { css } from "@emotion/core";
-
-const menuItems = [
-  { title: "Home", url: "/" },
-  { title: "About Us", url: null },
-  { title: "Brands", url: "/brands" },
-  { title: "News", url: null },
-  { title: "Events", url: null },
-  { title: "Shop", url: "/shop" },
-  { title: "Contact Us", url: null }
-];
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faShoppingCart,
+  faMapMarkerAlt,
+  faPhoneAlt,
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
 
 const linkStyles = css`
   a {
@@ -26,26 +24,71 @@ const linkStyles = css`
   }
 `;
 
-const BottomNavbar = () => (
-  <ul>
-    {menuItems.map(menuItem => (
-      <li key={menuItem.title}>
-        {menuItem.url ? (
-          <NavLink to={menuItem.url}>{menuItem.title}</NavLink>
-        ) : (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a className="disabled">{menuItem.title}</a>
-        )}
-      </li>
-    ))}
-  </ul>
-);
+const BottomNavbar = () => {
+  const menuItems = [
+    { title: "Home", url: "/" },
+    { title: "About Us", url: null },
+    { title: "Brands", url: "/brands" },
+    { title: "News", url: null },
+    { title: "Events", url: null },
+    { title: "Shop", url: "/shop" },
+    { title: "Contact Us", url: null }
+  ];
 
-const TopNavbar = () => (
-  <ul>
-    <li>Empty</li>
-  </ul>
-);
+  return <ul>{<NavLinks items={menuItems} />}</ul>;
+};
+
+const TopNavbar = () => {
+  const menuItems = [
+    {
+      child: (
+        <span>
+          <FontAwesomeIcon fixedWidth icon={faUser} /> Account
+        </span>
+      ),
+      title: "Account",
+      url: null
+    },
+    {
+      child: (
+        <span>
+          <FontAwesomeIcon fixedWidth icon={faShoppingCart} /> Cart
+        </span>
+      ),
+      title: "Cart",
+      url: null
+    },
+    {
+      child: (
+        <span>
+          <FontAwesomeIcon fixedWidth icon={faMapMarkerAlt} />
+        </span>
+      ),
+      title: "Map",
+      url: null
+    },
+    {
+      child: (
+        <span>
+          <FontAwesomeIcon fixedWidth icon={faEnvelope} />
+        </span>
+      ),
+      title: "Messages",
+      url: null
+    },
+    {
+      child: (
+        <span>
+          <FontAwesomeIcon fixedWidth icon={faPhoneAlt} />
+        </span>
+      ),
+      title: "Contact",
+      url: null
+    }
+  ];
+
+  return <ul>{<NavLinks items={menuItems} />}</ul>;
+};
 
 const Header = props => {
   return (
