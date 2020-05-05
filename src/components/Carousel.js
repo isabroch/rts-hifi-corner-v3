@@ -21,15 +21,16 @@ const CarouselSlide = props => {
           a {
             position: relative;
             height: 100%;
-            display: inline-block;
+            width: 100%;
+            display: block;
             &:hover {
               filter: brightness(1.1);
             }
           }
 
           .carouselTitle {
-            transform: translateX(-50%);
             top: 10%;
+            right: 55%;
             display: block;
             font-size: ${theme.fontSize.l};
             text-transform: uppercase;
@@ -40,7 +41,7 @@ const CarouselSlide = props => {
             margin: 0;
             line-height: 1;
             z-index: 1;
-            background-color: ${theme.color.neutralLight};
+            background-color: ${theme.color.neutralLightOpacity};
             backdrop-filter: blur(5px);
             text-shadow: 1px 1px 1px ${theme.color.light};
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25),
@@ -51,6 +52,8 @@ const CarouselSlide = props => {
 
           img {
             height: 100%;
+            width: 100%;
+            object-fit: contain;
           }
         }
       `}
@@ -71,11 +74,11 @@ const Carousel = props => {
       options={{
         pageDots: false,
         wrapAround: true,
-        autoPlay: 1500,
+        autoPlay: 5500,
         imagesLoaded: true
       }}
       css={css`
-        width: 50%;
+        width: 100%;
 
         .flickity-button-icon {
           fill: ${theme.color.brand};
