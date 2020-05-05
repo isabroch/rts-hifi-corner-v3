@@ -49,7 +49,6 @@ const App = () => {
                 font-family: "Nunito", sans-serif;
                 font-size: ${theme.fontSize.m};
                 font-weight: ${theme.fontWeight.normal};
-                color: ${theme.color.neutralDark};
               `}
             >
               <Header />
