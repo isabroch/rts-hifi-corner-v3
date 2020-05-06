@@ -1,7 +1,12 @@
 import React from "react";
 import ThemeContext from "./ThemeContext";
 import { css } from "@emotion/core";
-export const Title = ({ children, priority = 0, textColor = "inherit" }) => {
+export const Title = ({
+  className,
+  children,
+  priority = 0,
+  textColor = "inherit"
+}) => {
   const theme = React.useContext(ThemeContext);
   const HeaderPriority = Number(priority) > 0 ? `h${Number(priority)}` : `span`;
   const styles = css`
@@ -13,5 +18,9 @@ export const Title = ({ children, priority = 0, textColor = "inherit" }) => {
     display: block;
     text-shadow: ${theme.shadow};
   `;
-  return <HeaderPriority css={styles}>{children}</HeaderPriority>;
+  return (
+    <HeaderPriority className={className} css={styles}>
+      {children}
+    </HeaderPriority>
+  );
 };
