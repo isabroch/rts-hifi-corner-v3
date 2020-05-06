@@ -20,6 +20,9 @@ const App = () => {
       <ThemeContext.Provider value={theme}>
         <div
           css={css`
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
             font-family: "Nunito", sans-serif;
             font-size: ${theme.fontSize.m};
             font-weight: ${theme.fontWeight.normal};
