@@ -10,6 +10,7 @@ const Block = ({
   textColor,
   fixed,
   padding,
+  size,
   children
 }) => {
   const theme = React.useContext(ThemeContext);
@@ -37,6 +38,7 @@ const Block = ({
       className={className}
       css={css`
         display: flex;
+        box-sizing: border-box;
         ${
           noWrap
             ? css`
@@ -52,12 +54,20 @@ const Block = ({
                 align-items: center;
                 justify-content: center;
                 text-align: center;
+                margin: 0 auto;
               `
             : ""
         }
         color: ${textColor || theme.textColor};
         background-repeat: no-repeat;
         background-size: cover;
+        ${
+          size
+            ? css`
+                max-width: ${size};
+              `
+            : ""
+        }
         ${
           fixed
             ? css`
