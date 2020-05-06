@@ -24,7 +24,7 @@ const Breadcrumbs = ({
         margin: 0;
       `}
     >
-      {links.map(({ name, path }, index) => (
+      {links.map(({ name, path, action = () => {} }, index) => (
         <li
           key={name}
           css={css`
@@ -32,13 +32,14 @@ const Breadcrumbs = ({
             a {
               color: ${linkColor};
               text-decoration: none;
-              ::after {
-                content: "/";
-                padding: 0 1.5ch;
-                color: ${textColor};
-                opacity: 0.5;
-                display: inline-block;
-              }
+            }
+
+            &:not(:last-child)::after {
+              content: "/";
+              padding: 0 1.5ch;
+              color: ${textColor};
+              opacity: 0.5;
+              display: inline-block;
             }
 
             span {
@@ -47,7 +48,9 @@ const Breadcrumbs = ({
           `}
         >
           {index < links.length - 1 ? (
-            <Link to={path}>{name}</Link>
+            <Link onClick={action} to={path}>
+              {name}
+            </Link>
           ) : (
             <span>{name}</span>
           )}
@@ -57,10 +60,15 @@ const Breadcrumbs = ({
   );
 };
 
-const ShopProducts = () => {
+const ShopProducts = ({ filter, updateFilter, data }) => {
   const theme = useContext(ThemeContext);
+
   return (
     <Block
+      css={css`
+        display: block;
+        min-height: 100%;
+      `}
       background={theme.color.light}
       size={theme.maxSize.large}
       textColor={theme.color.dark}
@@ -72,11 +80,46 @@ const ShopProducts = () => {
         textColor={theme.color.dark}
         linkColor={theme.color.brand}
         links={[
-          { name: "Home", path: "/" },
-          { name: "Shop", path: "/shop/products" },
-          { name: "ID", path: "/shop/products/id" }
+          {
+            name: "Home",
+            path: "/"
+          },
+          {
+            name: "Shop",
+            path: "/shop/products",
+            action: () => {
+              updateFilter.manufacturer("");
+              updateFilter.category("");
+            }
+          },
+          {
+            name: filter.category || "All",
+            path: "/shop/products"
+          }
         ]}
       />
+
+      <div
+        css={css`
+          grid-template-columns: minmax(200px, 1fr) 3fr minmax(200px, 1fr);
+          grid-gap: 1em;
+        `}
+      >
+        <Column>
+          <Categories></Categories>
+          <Filters></Filters>
+        </Column>
+        <main>
+          <ViewOptions />
+          <ProductGrid>
+            <ProductGridCard product={"tbd"} />
+          </ProductGrid>
+          <ViewOptions />
+        </main>
+        <Column>
+          <Manufacturers></Manufacturers>
+        </Column>
+      </div>
     </Block>
   );
 };
