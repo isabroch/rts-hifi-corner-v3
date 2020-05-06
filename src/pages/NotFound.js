@@ -9,15 +9,7 @@ export default function NotFound() {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <Block
-      background="white"
-      textColor="black"
-      centered
-      size={theme.maxSize.large}
-      css={css`
-        align-items: flex-start;
-      `}
-    >
+    <Block background="white" textColor="black" size={theme.maxSize.large}>
       Couldn't find the page. Are you lost? &nbsp; <Link to="/">Go Home!</Link>
     </Block>
   );
