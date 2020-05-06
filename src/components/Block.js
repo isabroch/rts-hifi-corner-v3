@@ -54,7 +54,6 @@ const Block = ({
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                margin: 0 auto;
               `
             : ""
         }
@@ -65,6 +64,7 @@ const Block = ({
           size
             ? css`
                 max-width: ${size};
+                margin: 0 auto;
               `
             : ""
         }
