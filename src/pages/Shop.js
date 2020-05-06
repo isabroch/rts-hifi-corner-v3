@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { css } from "@emotion/core";
 import ThemeContext from "../components/ThemeContext";
 import { Link } from "@reach/router";
+import ButtonStyle from "../components/Button";
 
 const Grid = ({ items, defaultBackground = "white", textColor = "white" }) => {
   return (
@@ -106,7 +107,11 @@ const Shop = ({ data, updateFilter }) => {
         {
           image: null,
           key: "all",
-          content: "Shop All",
+          content: (
+            <span css={ButtonStyle({ backgroundColor: theme.color.brandDark })}>
+              Shop All
+            </span>
+          ),
           action: () => {
             updateFilter.manufacturer("");
             updateFilter.category("");
