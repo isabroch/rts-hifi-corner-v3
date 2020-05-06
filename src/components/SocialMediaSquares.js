@@ -25,6 +25,7 @@ export const SquareSocialMediaLink = props => {
         display: flex;
         background-size: cover;
         background-image: url(${props.background});
+        box-shadow: inset 0 0 0 100vmax rgba(48, 48, 48, 0.3);
       `}
     >
       <FontAwesomeIcon

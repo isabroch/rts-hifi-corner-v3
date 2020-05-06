@@ -6,7 +6,11 @@ import Block from "../components/Block";
 export const Quote = props => {
   const theme = React.useContext(ThemeContext);
   return (
-    <Block centered background="https://picsum.photos/1920/1080?random=2">
+    <Block
+      centered
+      background="https://picsum.photos/1920/1080?random=2"
+      darkenBackground
+    >
       <p
         css={css`
           text-transform: uppercase;

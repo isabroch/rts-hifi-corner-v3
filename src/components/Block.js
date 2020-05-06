@@ -5,6 +5,7 @@ import ThemeContext from "./ThemeContext";
 const Block = ({
   className,
   background,
+  darkenBackground,
   noWrap,
   centered,
   textColor,
@@ -14,6 +15,8 @@ const Block = ({
   children
 }) => {
   const theme = React.useContext(ThemeContext);
+
+  let darkeningValue = darkenBackground === true ? "0.3" : darkenBackground;
 
   const backgroundFrom = value => {
     // default background
@@ -48,33 +51,28 @@ const Block = ({
                 flex-wrap: wrap;
               `
         }
-        ${
-          centered
-            ? css`
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-              `
-            : ""
-        }
+        ${darkenBackground &&
+          css`
+            box-shadow: inset 0 0 0 100vmax rgba(48, 48, 48, ${darkeningValue});
+          `}
+        ${centered &&
+          css`
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+          `}
         color: ${textColor || theme.textColor};
         background-repeat: no-repeat;
         background-size: cover;
-        ${
-          size
-            ? css`
-                max-width: ${size};
-                margin: 0 auto;
-              `
-            : ""
-        }
-        ${
-          fixed
-            ? css`
-                background-attachment: fixed;
-              `
-            : ""
-        }
+        ${size &&
+          css`
+            max-width: ${size};
+            margin: 0 auto;
+          `}
+        ${fixed &&
+          css`
+            background-attachment: fixed;
+          `}
         padding: ${padding || "2rem"};
         ${backgroundFrom(background)}
       `}

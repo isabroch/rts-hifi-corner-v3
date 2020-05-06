@@ -10,6 +10,7 @@ export const Hero = () => (
     `}
     background="https://picsum.photos/1920/1080?random=1"
     centered
+    darkenBackground
     fixed
   >
     <Logo />
