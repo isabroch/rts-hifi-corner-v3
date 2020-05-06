@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import { css } from "@emotion/core";
 
-const NavLink = props => (
+export const NavLink = props => (
   <Link
     {...props}
     getProps={({ isPartiallyCurrent, isCurrent }) => {
@@ -15,7 +15,7 @@ const NavLink = props => (
   />
 );
 
-const NavBar = props => {
+export const NavBar = props => {
   return (
     <ul
       css={css`
@@ -46,5 +46,3 @@ const NavBar = props => {
     </ul>
   );
 };
-
-export default NavBar;

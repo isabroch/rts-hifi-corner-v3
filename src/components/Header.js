@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./NavBar";
+import { NavBar } from "./NavBar";
 import { css } from "@emotion/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

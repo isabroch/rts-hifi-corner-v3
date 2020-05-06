@@ -3,7 +3,7 @@ import Block from "./Block";
 import { css } from "@emotion/core";
 import { Link } from "@reach/router";
 import ThemeContext from "./ThemeContext";
-import NavBar from "./NavBar";
+import { NavBar } from "./NavBar";
 import {
   faYoutube,
   faTwitter,
@@ -12,7 +12,6 @@ import {
   faCcVisa,
   faCcMastercard,
   faCcAmex,
-  faCcApplePay,
   faCcPaypal
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -53,7 +52,7 @@ const socialMediaItems = [
   }
 ];
 
-const Footer = props => {
+const Footer = () => {
   const theme = React.useContext(ThemeContext);
 
   return (
