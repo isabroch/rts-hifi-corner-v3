@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
 import Header from "./components/Header";
@@ -14,6 +14,9 @@ import { css } from "@emotion/core";
 
 const App = () => {
   const theme = React.useContext(ThemeContext);
+
+  const [categoryFilter, updateCategoryFilter] = useState("");
+  const [manufacturerFilter, updateManufacturerFilter] = useState("");
 
   return (
     <React.StrictMode>
@@ -39,9 +42,35 @@ const App = () => {
           <Router>
             <Home path="/" />
             <Brands path="/brands" />
-            <Shop path="/shop" />
-            <ShopProducts path="/shop/products" />
-            <ProductDetails path="/shop/products/:id" />
+            <Shop
+              path="/shop"
+              update={{
+                category: updateCategoryFilter,
+                manufacturer: updateManufacturerFilter
+              }}
+            />
+            <ShopProducts
+              path="/shop/products"
+              categoryFilter={{
+                current: categoryFilter,
+                update: updateCategoryFilter
+              }}
+              manufacturerFilter={{
+                current: manufacturerFilter,
+                update: updateManufacturerFilter
+              }}
+            />
+            <ProductDetails
+              path="/shop/products/:id"
+              categoryFilter={{
+                current: categoryFilter,
+                update: updateCategoryFilter
+              }}
+              manufacturerFilter={{
+                current: manufacturerFilter,
+                update: updateManufacturerFilter
+              }}
+            />
             <NotFound default />
           </Router>
           <Footer />
