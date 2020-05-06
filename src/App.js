@@ -37,7 +37,9 @@ const App = () => {
     let productsData = await requestData([
       "https://hifi-corner.herokuapp.com/api/v1/products"
     ]);
-    updateProducts(productsData || []);
+    let productsObj = {};
+    productsData.forEach(item => (productsObj[item.sku] = item));
+    updateProducts(productsObj || []);
   }
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const App = () => {
                 category: categoryFilter,
                 manufacturer: manufacturerFilter
               }}
+              data={{ products: products }}
             />
             <NotFound default />
           </Router>
