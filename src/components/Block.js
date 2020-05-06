@@ -2,34 +2,43 @@ import React from "react";
 import { css } from "@emotion/core";
 import ThemeContext from "./ThemeContext";
 
-const Block = props => {
+const Block = ({
+  className,
+  background,
+  noWrap,
+  centered,
+  textColor,
+  fixed,
+  padding,
+  children
+}) => {
   const theme = React.useContext(ThemeContext);
 
-  const background = value => {
+  const backgroundFrom = value => {
     // default background
-    let background = css`
+    let backgroundValue = css`
       background-color: ${theme.color.dark};
     `;
     // check whether it should be backgroundImage or backgroundColor
     if (value && value.includes("http")) {
-      background = css`
-        background-image: url(${props.background});
+      backgroundValue = css`
+        background-image: url(${background});
       `;
     } else if (value) {
-      background = css`
-        background-color: ${props.background};
+      backgroundValue = css`
+        background-color: ${background};
       `;
     }
-    return background;
+    return backgroundValue;
   };
 
   return (
     <div
-      className={props.className}
+      className={className}
       css={css`
         display: flex;
         ${
-          props.noWrap
+          noWrap
             ? css`
                 flex-wrap: nowrap;
               `
@@ -38,7 +47,7 @@ const Block = props => {
               `
         }
         ${
-          props.centered
+          centered
             ? css`
                 align-items: center;
                 justify-content: center;
@@ -46,21 +55,21 @@ const Block = props => {
               `
             : ""
         }
-        color: ${props.color || theme.textColor};
+        color: ${textColor || theme.textColor};
         background-repeat: no-repeat;
         background-size: cover;
         ${
-          props.fixed
+          fixed
             ? css`
                 background-attachment: fixed;
               `
             : ""
         }
-        padding: ${props.padding || "2rem"};
-        ${background(props.background)}
+        padding: ${padding || "2rem"};
+        ${backgroundFrom(background)}
       `}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
