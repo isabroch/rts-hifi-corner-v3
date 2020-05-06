@@ -86,7 +86,7 @@ const Grid = ({ items, defaultBackground = "white", textColor = "white" }) => {
     </ul>
   );
 };
-const Shop = ({ update }) => {
+const Shop = ({ data, updateFilter }) => {
   const theme = useContext(ThemeContext);
   const [menuItems, updateMenuItems] = useState([]);
 
@@ -94,38 +94,34 @@ const Shop = ({ update }) => {
     (async function getItems() {
       let items = [];
 
-      let brands = await requestData([
-        "https://hifi-corner.herokuapp.com/api/v1/brands"
-      ]);
+      let brands = data.manufacturers;
 
-      let categories = await requestData([
-        "https://hifi-corner.herokuapp.com/api/v1/categories"
-      ]);
+      let categories = data.categories;
 
       items.push(
         ...brands.map(({ image, name }) => ({
           image: image,
           key: name,
           content: "",
-          action: update.manufacturer
+          action: updateFilter.manufacturer
         })),
         ...categories.map((name, index) => ({
           image: `https://picsum.photos/1920/1080?random=${8 + index}`,
           key: name,
           content: name,
-          action: update.category
+          action: updateFilter.category
         })),
         {
           image: null,
           key: "all",
           content: "Shop All",
-          action: [update.manufacturer, update.category]
+          action: [updateFilter.manufacturer, updateFilter.category]
         }
       );
 
       updateMenuItems(items);
     })();
-  }, [update]);
+  }, [data, updateFilter]);
 
   return (
     <nav

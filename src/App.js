@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
 import Header from "./components/Header";
@@ -11,12 +11,38 @@ import Brands from "./pages/Brands";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { css } from "@emotion/core";
+import requestData from "./functions/requestData";
 
 const App = () => {
   const theme = React.useContext(ThemeContext);
 
   const [categoryFilter, updateCategoryFilter] = useState("");
   const [manufacturerFilter, updateManufacturerFilter] = useState("");
+  const [manufacturers, updateManufacturers] = useState([]);
+  const [categories, updateCategories] = useState([]);
+  const [products, updateProducts] = useState([]);
+
+  // page first render
+  async function onPageStart() {
+    let manufacturersData = await requestData([
+      "https://hifi-corner.herokuapp.com/api/v1/brands"
+    ]);
+    updateManufacturers(manufacturersData || []);
+
+    let categoriesData = await requestData([
+      "https://hifi-corner.herokuapp.com/api/v1/categories"
+    ]);
+    updateCategories(categoriesData || []);
+
+    let productsData = await requestData([
+      "https://hifi-corner.herokuapp.com/api/v1/products"
+    ]);
+    updateProducts(productsData || []);
+  }
+
+  useEffect(() => {
+    onPageStart();
+  }, []);
 
   return (
     <React.StrictMode>
@@ -44,31 +70,36 @@ const App = () => {
             <Brands path="/brands" />
             <Shop
               path="/shop"
-              update={{
+              data={{
+                categories: categories,
+                manufacturers: manufacturers
+              }}
+              updateFilter={{
                 category: updateCategoryFilter,
                 manufacturer: updateManufacturerFilter
               }}
             />
             <ShopProducts
               path="/shop/products"
-              categoryFilter={{
-                current: categoryFilter,
-                update: updateCategoryFilter
+              data={{
+                categories: categories,
+                manufacturers: manufacturers,
+                products: products
               }}
-              manufacturerFilter={{
-                current: manufacturerFilter,
-                update: updateManufacturerFilter
+              filter={{
+                category: categoryFilter,
+                manufacturer: manufacturerFilter
+              }}
+              updateFilter={{
+                category: updateCategoryFilter,
+                manufacturer: updateManufacturerFilter
               }}
             />
             <ProductDetails
               path="/shop/products/:id"
-              categoryFilter={{
-                current: categoryFilter,
-                update: updateCategoryFilter
-              }}
-              manufacturerFilter={{
-                current: manufacturerFilter,
-                update: updateManufacturerFilter
+              filter={{
+                category: categoryFilter,
+                manufacturer: manufacturerFilter
               }}
             />
             <NotFound default />
