@@ -26,7 +26,11 @@ const ThemeContext = createContext({
   },
   textColor: "#ffffff",
   textSize: "1rem",
-  shadow: "1px 1px 10px rgba(0, 0, 0, 0.5)"
+  shadow: "1px 1px 10px rgba(0, 0, 0, 0.5)",
+  maxSize: {
+    large: "1200px",
+    medium: "1000px"
+  }
 });
 
 export default ThemeContext;

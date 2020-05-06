@@ -13,7 +13,7 @@ export const Quote = props => {
           margin: 0.5em 2em;
           font-size: ${theme.fontSize.xl};
           text-shadow: ${theme.shadow};
-          max-width: 1200px;
+          max-width: ${theme.maxSize.large};
         `}
       >
         {props.children}
