@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { css } from "@emotion/core";
 import ThemeContext from "../components/ThemeContext";
 import { Link } from "@reach/router";
-import requestData from "../functions/requestData";
 
 const Grid = ({ items, defaultBackground = "white", textColor = "white" }) => {
   return (
@@ -53,14 +52,7 @@ const Grid = ({ items, defaultBackground = "white", textColor = "white" }) => {
             `}
           >
             <Link
-              onClick={() => {
-                // check if multiple actions to do
-                if (Array.isArray(action)) {
-                  action.forEach(fn => fn(key));
-                } else {
-                  action(key);
-                }
-              }}
+              onClick={action}
               css={css`
                 font-weight: bold;
                 display: flex;
@@ -103,19 +95,22 @@ const Shop = ({ data, updateFilter }) => {
           image: image,
           key: name,
           content: "",
-          action: updateFilter.manufacturer
+          action: () => updateFilter.manufacturer(name)
         })),
         ...categories.map((name, index) => ({
           image: `https://picsum.photos/1920/1080?random=${8 + index}`,
           key: name,
           content: name,
-          action: updateFilter.category
+          action: () => updateFilter.category(name)
         })),
         {
           image: null,
           key: "all",
           content: "Shop All",
-          action: [updateFilter.manufacturer, updateFilter.category]
+          action: () => {
+            updateFilter.manufacturer("");
+            updateFilter.category("");
+          }
         }
       );
 
