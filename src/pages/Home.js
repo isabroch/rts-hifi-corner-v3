@@ -7,7 +7,7 @@ import { ProductFeature } from "../components/ProductFeature";
 import { BlurbSection } from "../components/Blurb";
 
 const Home = () => {
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [featuredProducts, updateFeaturedProducts] = useState([]);
 
   useEffect(() => {
     (async function getFeaturedProducts() {
@@ -19,7 +19,7 @@ const Home = () => {
 
       data = data.map(product => formatForFeature(product));
 
-      setFeaturedProducts(data || []);
+      updateFeaturedProducts(data || []);
     })();
   }, []);
 
