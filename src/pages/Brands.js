@@ -134,7 +134,7 @@ const Brands = () => {
       </p>
 
       <Link
-        to="/"
+        to="/shop/products"
         css={css`
           font-weight: ${theme.fontWeight.bold};
           color: ${theme.color.brand};
